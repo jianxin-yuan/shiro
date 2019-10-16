@@ -129,16 +129,22 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
     </dependencies>
 
-<!--    <build>-->
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resource</directory>-->
-<!--                <includes>-->
-<!--                    <include>**/*</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
-<!--    </build>-->
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

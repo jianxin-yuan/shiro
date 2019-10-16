@@ -5,7 +5,8 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--导入配置-->
-<!--    <import resource="classpath*:spring/applicationContext-dao.xml"/>-->
-<!--    <import resource="classpath*:spring/applicationContext-service.xml"/>-->
+    <import resource="classpath*:spring/applicationContext-dao.xml"/>
+    <import resource="classpath*:spring/applicationContext-service.xml"/>
+    <import resource="classpath*:spring/applicationContext-shiro.xml"/>
 
 </beans>

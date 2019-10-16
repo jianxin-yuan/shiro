@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--凭证匹配器-->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!--机密算法-->
+        <property name="hashAlgorithmName" value="md5"/>
+        <!--散列次数-->
+        <property name="hashIterations" value="2"/>
+    </bean>
+
+    <!--userRealm-->
+    <bean id="userRealm" class="com.yuan.realm.UserRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <!--securityManager 使用shiro-spring集成的类-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"/>
+    </bean>
+
+    <!--shiro filter-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!--登录页面-->
+        <property name="loginUrl" value="/toLogin"/>
+        <!--未授权页面-->
+        <property name="unauthorizedUrl" value="/unauthorized"/>
+        <!--登录成功跳转的页面-->
+        <property name="successUrl" value="/main"/>
+        <!-- 配置过滤器链 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 放行index.jsp -->
+                /index.jsp*=anon
+                <!-- 放行跳转到登陆页面的路径 -->
+                /toLogin*=anon
+                <!-- 放行登陆的请求 -->
+                /login*=anon
+                <!-- 设置登出的路径 -->
+                /logout*=logout
+                <!-- 设置其它路径全部拦截 -->
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+
+</beans>

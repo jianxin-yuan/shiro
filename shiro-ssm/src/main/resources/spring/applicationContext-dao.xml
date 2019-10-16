@@ -32,7 +32,7 @@
         <!--mapper.xml-->
         <property name="mapperLocations">
             <array>
-                <value>classpath:mapper/*Mapper.xml</value>
+                <value>classpath:com/yuan/mapper/*Mapper.xml</value>
             </array>
         </property>
 
