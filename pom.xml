@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--父项目-->
+    <groupId>com.yuan</groupId>
+    <artifactId>shiro</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <!--子模块-->
+    <modules>
+        <module>shiro-simple</module>
+        <module>shiro-ssm</module>
+    </modules>
+
+    <!--声明依赖版本-->
+    <properties>
+        <lombok.version>1.18.10</lombok.version>
+        <shiro.version>1.4.1</shiro.version>
+        <slf4j.version>2.0.0-alpha1</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+    </properties>
+
+    <!--
+    dependencyManagement的作用:在父类中声明所有的依赖.子类需要用到声明就用对应的依赖即可,子类也可以覆盖父类中声明的版本,
+    如果直接使用dependencies,则子类会集成父类中声明的所有依赖.这样对每个子项目而言引入了很多必要的jar包.使用dependencyManagement的作用则不会
+    当子项目依赖都差不多的时候可以直接使用dependencies声明所有依赖,当差别较大是.建议使用dependencyManagement的
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
+        <!--日志相关-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- maven-compiler-plugin:设置项目jdk开发和编译版本 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

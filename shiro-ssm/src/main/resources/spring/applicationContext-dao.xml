@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--properties-->
+    <context:property-placeholder location="classpath:db.properties" system-properties-mode="FALLBACK"/>
+
+    <!--DateSource-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
+        <property name="driver" value="${jdbc.driverClass}"/>
+        <property name="url" value="${jdbc.connectionURL}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 设置初始化连接池大小 -->
+        <property name="initialSize" value="5"/>
+        <!-- 最大连接数 -->
+        <property name="maxActive" value="10"/>
+        <!-- 设置等待时间 -->
+        <property name="maxWait" value="5000"/>
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <!--mybatis-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--mapper.xml-->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mapper/*Mapper.xml</value>
+            </array>
+        </property>
+
+        <!--分页插件-->
+        <property name="plugins">
+            <array>
+                <value>com.github.pagehelper.PageInterceptor</value>
+            </array>
+        </property>
+    </bean>
+
+    <!--扫描mapper文件-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--mapper文件位置-->
+        <property name="basePackage" value="com.yuan.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+
+</beans>
