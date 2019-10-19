@@ -54,6 +54,7 @@ public class UserRealm extends AuthorizingRealm {
         credentialsMatcher.setHashAlgorithmName(Md5Hash.ALGORITHM_NAME);
         //散列次数
         credentialsMatcher.setHashIterations(2);
+
         setCredentialsMatcher(credentialsMatcher);
     }
 

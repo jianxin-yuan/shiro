@@ -7,7 +7,7 @@
 
     <!--凭证匹配器-->
     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-        <!--机密算法-->
+        <!--加密算法-->
         <property name="hashAlgorithmName" value="md5"/>
         <!--散列次数-->
         <property name="hashIterations" value="2"/>
@@ -41,6 +41,8 @@
                 /toLogin*=anon
                 <!-- 放行登陆的请求 -->
                 /login*=anon
+                <!--放行注册-->
+                /user/register*=anon
                 <!-- 设置登出的路径 -->
                 /logout*=logout
                 <!-- 设置其它路径全部拦截 -->

@@ -75,7 +75,7 @@ public class UserRealm extends AuthorizingRealm {
             List<Permission> permissionList = permissionService.findByUserId(user.getId());
             List<String> permissions = permissionList != null ? permissionList.stream().map(Permission::getCode).collect(Collectors.toList()) : null;
             ActiveUser activeUser = new ActiveUser(user, roles, permissions);
-            ByteSource salt = ByteSource.Util.bytes(user.getAddress() + ":" + user.getGender());
+            ByteSource salt = ByteSource.Util.bytes(user.getSalt());
             return new SimpleAuthenticationInfo(activeUser, user.getPassword(), salt, this.getName());
 
         }

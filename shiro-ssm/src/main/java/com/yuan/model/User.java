@@ -1,11 +1,15 @@
 package com.yuan.model;
 
+import lombok.Builder;
+
 /**
  * 用户信息
  *
  * @author yuan
  * @date   2019-10-13
  */
+
+@Builder
 public class User {
     /**
      * id
@@ -32,17 +36,10 @@ public class User {
      */
     private String address;
 
-    public User(Integer id, String username, String password, String gender, String address) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.gender = gender;
-        this.address = address;
-    }
-
-    public User() {
-        super();
-    }
+    /**
+     * 盐值
+     */
+    private String salt;
 
     public Integer getId() {
         return id;
@@ -82,5 +79,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }
