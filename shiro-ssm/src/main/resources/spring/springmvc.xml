@@ -24,6 +24,9 @@
     <mvc:default-servlet-handler/>
 
 
+   <!-- 不能把开启注解的代码放到appliaciton-shiro.xml
+    如果开启注解的配置在appliaciton-shiro.xml那么注解的生效范围只能是service层 -->
+
     <!--启用shiro annotation-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>

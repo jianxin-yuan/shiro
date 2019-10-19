@@ -35,13 +35,6 @@
                 <value>classpath:com/yuan/mapper/*Mapper.xml</value>
             </array>
         </property>
-
-        <!--分页插件-->
-        <property name="plugins">
-            <array>
-                <bean class="com.github.pagehelper.PageInterceptor"></bean>
-            </array>
-        </property>
     </bean>
 
     <!--扫描mapper文件-->
