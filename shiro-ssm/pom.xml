@@ -29,7 +29,7 @@
         <mysql.version>5.1.47</mysql.version>
         <pagehelper.version>5.1.10</pagehelper.version>
         <druid.version>1.1.19</druid.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.10.0.pr1</jackson.version>
     </properties>
 
     <dependencies>
