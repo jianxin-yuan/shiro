@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * @author yuan
  * @date 2019/10/6 11:57 下午
+ * 模拟查询权限
  */
 public class PermissionServiceImpl implements PermissionService {
     @Override

@@ -20,6 +20,7 @@
 <shiro:hasPermission name="user:export">
     <h2><a>导出</a></h2>
 </shiro:hasPermission>
+<shiro:hasRole name=""></shiro:hasRole>
 
 
 </body>

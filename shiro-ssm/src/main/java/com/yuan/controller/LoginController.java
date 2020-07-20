@@ -25,7 +25,6 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String login(String userName, String password, HttpSession session, Model model) {
-
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(new UsernamePasswordToken(userName, password));

@@ -36,19 +36,22 @@ public class UserRealm extends AuthorizingRealm {
     private PermissionService permissionService;
 
     /**
-     * 授权
+     * 授权方法
      *
      * @param principals
      * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        //拿到认证成功设置的principal信息
         ActiveUser activeUser = (ActiveUser) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        //用户角色
         List<String> roles = activeUser.getRoles();
         if (roles != null && roles.size() > 0) {
             info.addRoles(roles);
         }
+        //用户权限
         List<String> permissions = activeUser.getPermissions();
         if (permissions != null && permissions.size() > 0) {
             info.addStringPermissions(permissions);
@@ -59,7 +62,7 @@ public class UserRealm extends AuthorizingRealm {
 
 
     /**
-     * 认证
+     * 认证方法
      *
      * @param token
      * @return
@@ -68,14 +71,26 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken ut = (UsernamePasswordToken) token;
+        //根据用户名查询用户
         User user = userService.getUserByName(ut.getUsername());
         if (user != null) {
+            //根据用户ID查询角色列表
             List<Role> roleList = roleService.findByUserId(user.getId());
             List<String> roles = roleList != null ? roleList.stream().map(Role::getName).collect(Collectors.toList()) : null;
+            //根据用户ID查询权限列表
             List<Permission> permissionList = permissionService.findByUserId(user.getId());
             List<String> permissions = permissionList != null ? permissionList.stream().map(Permission::getCode).collect(Collectors.toList()) : null;
+            //构建一个包含了用户信息 & 角色信息 & 权限信息 的实体
             ActiveUser activeUser = new ActiveUser(user, roles, permissions);
+            //加密盐值
             ByteSource salt = ByteSource.Util.bytes(user.getSalt());
+            /**
+             * 参数说明
+             * 参数1:活动的用户.用于后续授权
+             * 参数2:加密的密码
+             * 参数3:加密的盐值
+             * 参数4:当前realm类名.不重要
+             */
             return new SimpleAuthenticationInfo(activeUser, user.getPassword(), salt, this.getName());
 
         }

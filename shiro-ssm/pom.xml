@@ -13,13 +13,11 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <!--文件编码-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-
 
         <servlet.version>3.1.0</servlet.version>
         <jsp.version>2.3.1</jsp.version>
@@ -108,13 +106,6 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <!-- pagehelper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>${pagehelper.version}</version>
-        </dependency>
-
         <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -135,16 +126,10 @@
             <version>${shiro.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.13</version>
-        </dependency>
-
     </dependencies>
 
     <build>
+        <!--打包时将src/main/java下的xml一起打包-->
         <resources>
             <resource>
                 <directory>src/main/java</directory>

@@ -5,6 +5,7 @@ import entity.User;
 /**
  * @author yuan
  * @date 2019/10/6 11:33 下午
+ * 模拟数据库查询用户
  */
 public class UserServiceImpl implements UserService {
     @Override
@@ -24,6 +25,6 @@ public class UserServiceImpl implements UserService {
                 break;
         }
 
-        return new User(id, userName, "d5d2e4a0c1dd8c7d666ea65aed5c6a1c", "上海", User.Gender.MALE);
+        return new User(id, userName, "302fb51e693fac0af0c92f2ea16373f1", "上海", User.Gender.MALE);
     }
 }

@@ -23,7 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequiresPermissions(("user:query"))
+    @RequiresPermissions("user:query")
     @RequestMapping("/query")
     public Map<String, Object> query() {
         Map<String, Object> map = new HashMap<>(1);

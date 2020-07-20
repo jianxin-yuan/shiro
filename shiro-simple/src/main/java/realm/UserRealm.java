@@ -41,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
     private RoleService roleService = new RoleServiceImpl();
     private PermissionService permissionService = new PermissionServiceImpl();
 
-    private static final String SALT = "yuanjainxin";
+    private static final String SALT = "hello,shiro";
 
 
     /**
@@ -116,6 +116,7 @@ public class UserRealm extends AuthorizingRealm {
     }
 
     /**
+     * shiro提供了简介易用的加密组件
      * md5散列算法
      *
      * @param source         元数据
